@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Report</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <style>
+      pre{
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+
+
+    <a href="/code.html">Code</a>
+    <h1>Sudoku</h1>
+    <p>
+      Sudoku is a logic-based, number-placement puzzle. In classic Sudoku, the
+      objective is to fill a 9 x 9 grid with digits so that each column, each
+      row, and each of the nine 3 x 3 subgrids that compose the grid (also
+      called "boxes", "blocks", or "regions") contains all of the digits from 1
+      to 9. The puzzle setter provides a partially completed grid, which for a
+      well-posed puzzle has a single solution.
+    </p>
+    <h1>Backtracking</h1>
+    <p>
+      Backtracking is an algorithmic technique whose goal is to use brute force
+      to find all solutions to a problem. It entails gradually compiling a set
+      of all possible solutions. Because a problem will have constraints,
+      solutions that do not meet them will be removed.
+    </p>
+    <h1>A star</h1>
+    <p>
+      <pre>
+// A* Search Algorithm
+1.  Initialize the open list
+2.  Initialize the closed list
+    put the starting node on the open 
+    list (you can leave its f at zero)
+
+3.  while the open list is not empty
+    a. find the node with the least f on 
+       the open list, call it "q"
+
+    b. pop q off the open list
+  
+    c. generate q's 8 successors and set their 
+       parents to q
+   
+    d. for each successor
+        i. if successor is the goal, stop search
+        
+        ii. else, compute both g and h for successor
+          successor.g = q.g + distance between 
+                              successor and q
+          successor.h = distance from goal to 
+          successor (This can be done using many 
+          ways, we will discuss three heuristics- 
+          Manhattan, Diagonal and Euclidean 
+          Heuristics)
+          
+          successor.f = successor.g + successor.h
+
+        iii.  if a node with the same position as 
+            successor is in the OPEN list which has a 
+           lower f than successor, skip this successor
+
+        iV.  if a node with the same position as 
+            successor  is in the CLOSED list which has
+            a lower f than successor, skip this successor
+            otherwise, add  the node to the open list
+     end (for loop)
+  
+    e. push q on the closed list
+    end (while loop)
+      </pre>
+    </p>
+    <h1>Introduction</h1>
+    <p>
+      Sudoku, a logic-based combinatorial number-placement puzzle, has gained immense popularity as a challenging and engaging game. Originating from Switzerland in the 18th century, Sudoku became a global sensation in the early 21st century. The game consists of a 9x9 grid divided into nine 3x3 subgrids, each containing nine cells. The objective is to fill the grid with digits from 1 to 9, ensuring that each row, each column, and each of the nine 3x3 subgrids contains all of the digits without repetition.
+    </p>
+    <p>
+      The primary objective of this project is to implement a Sudoku solver using the backtracking algorithm—a powerful technique commonly employed for solving constraint satisfaction problems. Backtracking involves a systematic exploration of all possible solutions, undoing the previous choices whenever the algorithm determines that they cannot lead to a valid solution.
+
+Beyond solving Sudoku, this project aims to provide a visual representation of the solving process. Visualization enhances our understanding of the algorithm's decision-making at each step, offering insights into the intricate strategies employed by the solver. The combination of backtracking and visualization not only demonstrates the effectiveness of the backtracking algorithm but also serves as an educational tool for those interested in algorithmic problem-solving and game optimization. Through this project, we explore the intersection of programming, logic, and visual representation, contributing to the broader field of recreational mathematics and algorithmic visualization.
+    </p>
+<h1>Implementation</h1>
+    <p>
+      <pre>Implementation
+
+Iterative Backtracking:
+
+The iterative backtracking is a key algorithm used in this Sudoku solver. Sudoku is a classic example of a problem that can be efficiently solved using the backtracking approach. The iterative backtracking in this code is implemented in the Solver class. It systematically explores the possible solutions to the Sudoku puzzle, backtracking when it reaches a dead-end. The algorithm efficiently explores the solution space by filling cells with valid numbers and backtracking when an invalid state is encountered.
+
+python
+def solve(self):
+      if self.program.state in [0, 2, 3]:
+          return
+      curr = self.get_empty()
+      if not curr:
+          self.program.state = 2
+          return
+      self.program.current = curr
+
+      values = []
+      for i in range(1, 10):
+          if i not in curr.tracked:
+              values.append(i)
+      self.valid_rows(curr, values)
+      self.valid_cols(curr, values)
+      self.valid_subgrid(curr, values)
+
+      if not values:
+          return self.backtrack(curr)
+
+      curr.value = values[randint(0, len(values) - 1)]
+      curr.tracked.append(curr.value)
+      self.closedset.append(curr)
+Object-Oriented Programming (OOP): Board, Cell, Solver Classes
+
+The code utilizes Object-Oriented Programming (OOP) principles to model the entities involved in the Sudoku solver. The key classes are:
+
+Board Class: Represents the Sudoku board. It contains cells arranged in a 9x9 grid.
+
+Cell Class: Represents an individual cell on the Sudoku board. Each cell has a position (x, y) and a value.
+
+Solver Class: Manages the solving logic. It utilizes backtracking to solve the Sudoku puzzle.
+
+These classes encapsulate the properties and behaviors associated with the respective entities, promoting modularity and code organization.
+
+Data Structure of Board, Cell, Solver Classes:
+
+Board Class:
+
+self.cells: 2D list representing the Sudoku grid.
+self.size: Size of each cell in pixels.
+self.offset: Offset to position the board on the screen.
+Cell Class:
+
+self.x, self.y: Coordinates of the cell.
+self.value: Value of the cell (0 for empty).
+self.tracked: List to keep track of the chosen values during backtracking.
+Solver Class:
+
+self.cells: Reference to the cells on the Sudoku board.
+self.program: Reference to the main program.
+self.closedset: List of cells that have been filled during the solving process.
+Visualizing Board Using Pygame:
+
+The Pygame library is used to create a graphical user interface for the Sudoku solver. The Main class initializes the Pygame window and handles user input. The Solver class interacts with the Board and Cell classes to visualize the Sudoku board and the solving process.
+
+The code renders the Sudoku grid, displays numbers in cells, and highlights the current cell and cells filled during backtracking. The graphical representation enhances the user experience and provides a visual representation of the solving algorithm.
+
+These implementations and design choices contribute to a clear and organized structure, making the codebase more readable and maintainable. Additionally, the use of OOP principles allows for easy extension and modification of the Sudoku solver.</pre>
+    </p>
+    <h1>backtracking approach</h1>
+    <p>
+      <pre>1. Backtracking Approach
+Overview:
+Backtracking is a systematic and recursive algorithmic technique for finding all possible solutions to a problem. It is particularly useful for solving problems with a combination of choices and constraints, where an incorrect choice at any step requires undoing the previous choices and making alternative selections.
+
+Application in Sudoku Solver:
+In the Sudoku solver project, backtracking is employed to systematically explore and fill in the values for each cell in the Sudoku grid. When the solver encounters a cell without a valid value, it backtracks to the previous state and explores alternative values for the current cell. This process continues until a solution is found or all possibilities are exhausted.</pre>
+    </p>
+<h1>Solver,Board,Cell</h1>
+<p>
+  <pre>1. Solver Class
+The Solver class is a crucial component of the Sudoku Solver project, responsible for implementing the backtracking algorithm to find a solution for the Sudoku puzzle. Here's a detailed explanation:
+
+Attributes:
+
+cells: Reference to the 2D array of Cell objects representing the Sudoku grid.
+program: Reference to the instance of the Main class, allowing interaction with the game program.
+closedset: A list to keep track of the cells that have been filled during the solving process.
+Methods:
+
+get_empty(self):
+
+Iterates through the Sudoku grid to find the next empty cell (cell with value 0).
+Returns the empty cell or False if no empty cells are found.
+valid_rows(self, cell, result):
+
+Takes a cell and a list (result) of possible values for that cell.
+Eliminates values from result that are already present in the same row as the given cell.
+valid_cols(self, cell, result):
+
+Similar to valid_rows, eliminates values from result present in the same column as the given cell.
+valid_subgrid(self, cell, result):
+
+Eliminates values from result present in the 3x3 subgrid of the given cell.
+backtrack(self, curr):
+
+Backtracks to the previous cell by popping the last cell from the closedset.
+Resets the chosen values for the backtracked cell.
+solve(self):
+
+Implements the backtracking algorithm to fill in the Sudoku grid.
+Calls helper methods to validate and choose values for each cell.
+Handles the termination conditions based on the program state.
+2. Board Class
+The Board class represents the Sudoku game board, containing a 2D array of Cell objects. Here's an in-depth explanation:
+
+Attributes:
+
+cells: 2D array of Cell objects representing the Sudoku grid.
+size: The size of each cell on the game board.
+offset: A Vector object representing the offset of the board from the top-left corner.
+Methods:
+
+get_coords(self, mpos):
+
+Takes mouse position (mpos) as input.
+Converts the mouse position to grid coordinates, determining the cell clicked.
+Returns a Vector object representing the cell coordinates.
+render_one(self, surf, cell, color=YELLOW):
+
+Renders a single cell on the game board using Pygame.
+Allows customization of the cell color (default is yellow).
+render_many(self, surf, cells, color=CYAN):
+
+Renders multiple cells on the game board using Pygame.
+Allows customization of the cell color (default is cyan).
+render(self, surf, color=WHITE):
+
+Renders the entire game board on the Pygame surface.
+Allows customization of the cell color (default is white for filled cells).
+3. Cell Class
+The Cell class represents an individual cell within the Sudoku grid. Here's a detailed explanation:
+
+Attributes:
+
+x, y: Coordinates of the cell within the Sudoku grid.
+value: The numeric value of the cell (0 if empty).
+tracked: A list to keep track of chosen values during the solving process.
+Methods:
+
+render(self, surf, size, offset, color=WHITE):
+Renders the cell on the Pygame surface with specified size, offset, and color.
+Displays the numeric value in the center of the cell.
+These classes work collaboratively to simulate the Sudoku game, allowing user interaction, visualizing the solving process, and providing a comprehensive solution to the puzzle.</pre>
+</p>
+<h1>visualizing sudoku board</h1>
+<p>
+  <pre>
+sudoku_board = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+]
+  </pre>
+  <pre>
+    +-------+-------+-------+
+    | 5 3 0 | 0 7 0 | 0 0 0 |
+    | 6 0 0 | 1 9 5 | 0 0 0 |
+    | 0 9 8 | 0 0 0 | 0 6 0 |
+    +-------+-------+-------+
+    | 8 0 0 | 0 6 0 | 0 0 3 |
+    | 4 0 0 | 8 0 3 | 0 0 1 |
+    | 7 0 0 | 0 2 0 | 0 0 6 |
+    +-------+-------+-------+
+    | 0 6 0 | 0 0 0 | 2 8 0 |
+    | 0 0 0 | 4 1 9 | 0 0 5 |
+    | 0 0 0 | 0 8 0 | 0 7 9 |
+    +-------+-------+-------+
+  </pre>
+</p>
+<h1>Front pages</h1>
+<p>
+  <pre>Acknowledgment
+I extend my heartfelt gratitude to all individuals who played a pivotal role in the successful completion of the Sudoku Solver project. I would like to express my sincere appreciation to [Your Name], whose unwavering dedication and expertise significantly contributed to the realization of this project. Additionally, I am thankful to [Any other contributor] for their valuable insights and support throughout the development process. Special thanks to [Any mentor or advisor] for their guidance and mentorship, which proved invaluable in navigating the complexities of the project.
+
+This project would not have been possible without the collaborative efforts and encouragement from each contributor. Their collective input has left an indelible mark on the project, enhancing its overall quality and success.
+
+[Your Signature]
+[Your Full Name]
+[Date]
+
+Certificate of Completion
+This certificate acknowledges the successful completion of the "Sudoku Solver" project by [Your Full Name] within the framework of the [Course/Program Name] at [Your Institution or Organization]. This project exemplifies a high level of proficiency in Python programming, algorithmic problem-solving, and the application of object-oriented programming concepts.
+
+The Sudoku Solver project, completed on [Date], spans a duration of [Duration in weeks/months]. The project centers around the implementation of a backtracking algorithm for solving Sudoku puzzles, adopting an object-oriented design with dedicated classes for the Sudoku board, cells, and the solver. Noteworthy achievements include the effective use of data structures to represent the Sudoku grid and the creation of an interactive and visually appealing Sudoku board using the Pygame library.
+
+This certificate is issued by [Your Institution or Organization] as a testament to the dedication and accomplishments of [Your Full Name]. It is our belief that the skills demonstrated in this project will serve as a strong foundation for future endeavors in the field.
+
+Date of Issue: [Date]
+
+[Your Signature]
+[Your Full Name]
+[Your Designation or Course/Program Name]</pre>
+</p>
+  </body>
+</html>

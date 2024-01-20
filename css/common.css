@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=Nova+Round&family=Open+Sans:wght@400;500;600&display=swap");
+
+:root {
+  --nova: "Nova Round";
+  --fira: "Fira Code";
+  --sans: "Open Sans";
+}
+
+* {
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: black;
+}
+h1 {
+  font-family: var(--nova);
+  font-weight: 800;
+  font-size: 4rem;
+}
+h2 {
+  font-size: 1.8rem;
+}

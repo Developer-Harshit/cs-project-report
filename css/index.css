@@ -1,0 +1,50 @@
+/* index styles */
+
+.index-ul {
+  font-size: 1.8rem;
+  font-family: var(--nova);
+}
+
+.index-ul li::before {
+  font-weight: 900;
+  font-size: 2.2rem;
+  content: counter(index) ". ";
+}
+.sub-ul li::before {
+  font-size: 1.2rem;
+  content: counter(index) "." counter(sub) ".";
+  margin-right: 4px;
+}
+.index ul,
+.index {
+  list-style: none;
+  flex-direction: column;
+  display: flex;
+  padding: 0.5rem;
+}
+
+.sub-ul {
+  font-size: 1rem;
+
+  padding-left: 2rem;
+  gap: 0.5rem;
+}
+.index-ul {
+  margin-top: 1rem;
+  gap: 0.8rem;
+}
+
+.index {
+  counter-reset: index;
+  font-family: Roboto, sans-serif;
+}
+
+.index-ul li {
+  counter-reset: sub;
+  counter-increment: index;
+}
+
+.sub-ul li {
+  counter-increment: sub;
+  text-indent: 1em;
+}
