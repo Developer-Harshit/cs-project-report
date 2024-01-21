@@ -1,0 +1,40 @@
+.front {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.front header {
+  margin-bottom: 2rem;
+}
+.front * {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.front ul {
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  text-align: justify;
+  display: flex;
+}
+.front li strong {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.front li p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.front li {
+  display: flex;
+  flex-direction: column;
+}
+
+.front .pattern {
+  height: 200px;
+  background: url(/images/topography.svg);
+}
+.pattern.up {
+  top: 0;
+}

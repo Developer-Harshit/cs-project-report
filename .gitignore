@@ -5,4 +5,7 @@ package.json
 
 .prettierrc
 .prettierignore
-test
+code
+pdf
+dist
+__pycache__
