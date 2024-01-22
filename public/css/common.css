@@ -46,13 +46,13 @@ h3 {
 h3 {
   font-size: 1.3rem;
 }
-ul {
+ul:not(.index ul) {
   list-style: none;
   padding-left: 2rem;
   margin-bottom: 1rem;
   list-style-type: square;
 }
-li {
+li:not(.index li) {
   margin: 0.5rem;
   font-size: 0.9rem;
 }
@@ -80,12 +80,15 @@ img {
   align-items: flex-start;
   gap: 1rem;
 }
+.dual img {
+  height: 100%;
+}
 .snippet {
   display: block;
   white-space: pre;
   font-family: var(--fira);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 700;
   color: black;
   border: 1px solid;
   margin: 1rem;
@@ -101,6 +104,6 @@ img {
   z-index: -1;
   left: 0;
   bottom: 0;
-  background: url(/images/wave.svg);
+  background: url(../svg/wave.svg);
   opacity: 0.8;
 }

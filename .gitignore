@@ -1,10 +1,7 @@
 node_modules
 yarn.lock 
-
-
 .prettierrc
 .prettierignore
 code
 pdf
-dist
 __pycache__

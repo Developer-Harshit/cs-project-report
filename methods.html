@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Report</title>
+    <link rel="stylesheet" href="./public/css/font.css" />
+    <link rel="stylesheet" href="./public/css/common.css" />
+    <link rel="stylesheet" href="./public/css/paper.css" />
+  </head>
+
+  <body class="A4">
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <h1>Methodology</h1>
+
+      <h2>Data Structures</h2>
+      <!-- stack  -->
+      <div class="sub-section">
+        <h3>Stack</h3>
+        <img src="./public/images/stack.png" class="right" />
+        <p>
+          A Stack is a linear data structure that follows the LIFO
+          (Last-In-First-Out) principle. Stack has one end, whereas the Queue
+          has two ends (front and rear).A stack can be defined as a container in
+          which insertion and deletion can be done from the one end known as the
+          top of the stack.
+        </p>
+        <br />
+        <p>
+          In the Sudoku solver project,the closedset stack keeps track of
+          previously explored cells, allowing the solver to efficiently
+          backtrack when encountering invalid states
+        </p>
+      </div>
+      <!-- 2d array  -->
+      <div class="sub-section">
+        <h3>2D Array</h3>
+        <div class="dual">
+          <img src="./public/images/array.png" class="left" />
+          <p>
+            A two-dimensional array, also known as a 2D array, is a collection
+            of data elements arranged in a grid-like structure with rows and
+            columns. Each element in the array is referred to as a cell and can
+            be accessed by its row and column indices/indexes.
+          </p>
+        </div>
+        <p>
+          In the context of Sudoku solving, the 2D array represents the sudoku
+          grid, with each cell storing a digit and it's grid coordinate.
+          Efficiently navigating and manipulating this array is crucial for
+          implementing the backtracking algorithm.
+        </p>
+      </div>
+    </section>
+    <section class="sheet padding-10mm">
+      <div class="pattern"></div>
+      <h2>OOP</h2>
+      <img src="./public/images/oop.png" class="full" />
+      <p>
+        Object-Oriented Programming or OOPs refers to languages that use objects
+        in programming. Object-oriented programming aims to implement real-world
+        entities like inheritance, hiding, polymorphism, etc in programming.
+      </p>
+      <br />
+      <p>
+        The main aim of OOP is to bind together the data and the functions that
+        operate on them so that no other part of the code can access this data
+        except that function.
+      </p>
+
+      <h2>Backtracking</h2>
+      <p>
+        Backtracking, a recursive algorithmic technique, systematically explores
+        and finds solutions to problems with choices and constraints. In the
+        Sudoku solver project, backtracking is pivotal. It guides the systematic
+        filling of Sudoku grid cells. When encountering an invalid state, the
+        algorithm backtracks, undoing choices and exploring alternative values
+        until a valid solution is found or all possibilities are exhausted.
+      </p>
+    </section>
+  </body>
+</html>

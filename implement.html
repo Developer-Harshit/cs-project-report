@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Report</title>
+    <link rel="stylesheet" href="./public/css/font.css" />
+    <link rel="stylesheet" href="./public/css/common.css" />
+    <link rel="stylesheet" href="./public/css/paper.css" />
+  </head>
+
+  <body class="A4">
+    <!-- visualizing sudoku  -->
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <h1>Implementation</h1>
+      <h2>Visualizing Sudoku Board</h2>
+
+      <p>
+       In implementing the sudoku solver the visualization of cell and board plays an important role.
+      </p>
+      <p>Our objective is to not just create an algorithm that solves give sudoku board,but to breathe life into the process through an intuitive and user friendly visualizatin .It helps understanding how the backtracking algorithm works</p>
+      
+      <div class="dual sub-section">
+        <img src="./public/images/cell.png" class="" />
+        <div>
+          <h3>Cells</h3>
+          <p>
+        Each cell instance has position while contains row-column grid coordinates and has a value property while can has any number from 0 to 9 where 0 represents empty cell.
+          </p>
+        </div>
+      </div>
+      <div class="sub-section">
+        
+          <h3>Board</h3>
+          <p>
+        Board instance contains 9x9 2d array of cells.It is initialized with empty cells which then can befilled by user or solver.
+          </p>
+          <br>
+          <div class="dual">
+            <pre>
+              <code class="snippet" style="line-height: 1.4rem;font-weight: 900;font-family: var(--sans);" >
+grid = [
+[Cell( 0,0,6 ) , Cell(1,0,0) , Cell(2,0,0 )],
+[Cell( 0,1,0 ) , Cell(1,1,5) , Cell(2,1,0 )],
+[Cell( 0,2,3 ) , Cell(1,2,0) , Cell(2,2,0 )]
+]
+            </code>
+          </pre>
+          <img src="./public/images/grid1.png" alt="" />
+        </div>
+        <p style="text-align: center;margin: 0;font-size: 1rem;">3x3 grid is show for simplicity</p>
+      </div>
+    </section>
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <h2>Algorithm Implementation</h2>
+      <p>
+        This algorithm run while there are empty cells in the grid.It fills the valid_values in that empty cell,if no values are found it backtracks
+      </p>
+      <div class="sub-section">
+        <h3>Pseudo-code</h3>
+        <ul>
+          <li>
+            While grid has empty cells
+          </li>
+          <li>
+          Find valid_values for the empty cell 
+          </li>
+          <li>
+            if no valid values found : backtrack 
+          </li>
+          <li>
+            else : 
+            <ul>
+
+              <li>
+                fill one of valid_values to the empty cell 
+              </li>
+              <li>
+                append the cell to closedset
+              </li>              
+              <li>
+                append that value to its tracked property
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="sub-section">
+        <h3>Iterative Backtracking</h3>
+        <p>
+          Backtrack function is called when there are no valid_values left for the current cell.It undo previous choices to explore other possibilities 
+        </p>
+        
+       <pre>
+        <code class="snippet">
+def backtrack(self, curr):
+    if not self.closedset:
+        print("no solution")
+        return
+    curr.tracked = []
+    prev = self.closedset.pop()
+    prev.value = 0
+
+        </code>
+       </pre>
+      </div>
+    </section>
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <div class="sub-section">
+        <h3>Finding Valid Values</h3>
+        <div class="sub-section">
+          <h4>Rows</h4>
+          <p>
+          It loops through the adjacent rows of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_rows(self, cell, result):
+    x = cell.x
+    y = cell.y
+    for i in range(9):
+        if x == i:
+          continue
+        other = self.cells[y][i]
+        if other.value in result:
+            result.remove(other.value)
+</code>
+          </pre>
+        </div>
+        <div class="sub-section">
+          <h4>columns</h4>
+          <p>
+            It loops through the adjacent column of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_cols(self, cell, result):
+    x = cell.x
+    y = cell.y
+    for j in range(9):
+        if y == j:
+          continue
+        other = self.cells[j][x]
+        if other.value in result:
+          result.remove(other.value)
+
+            </code>
+          </pre>
+        </div>
+   
+
+    </section>
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <div class="sub-section">
+          <h4>Sub Grid</h4>
+          <p>
+            It loops through the sub grid of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_subgrid(self, cell, result):
+    x = cell.x
+    y = cell.y
+    startRow = x - x % 3
+    startCol = y - y % 3
+
+    for j in range(startCol, startCol + 3):
+      for i in range(startRow, startRow + 3):
+          if x == i and y == j:
+              continue
+          other = self.cells[j][i]
+          if other.value in result:
+              result.remove(other.value)
+          
+            </code>
+          </pre>
+        </div>
+        <div class="sub-section">
+          <h4>Tracked</h4>
+          <p>
+            It removes duplicate values from result that are present in tracked property of current cell
+          </p>
+          <pre>
+            <code class="snippet">
+result = []
+for i in range(1, 10):
+    if i not in curr.tracked:
+        result.append(i)
+            </code>
+          </pre>
+        </div>
+      
+    </section>
+  </body>
+</html>

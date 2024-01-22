@@ -33,7 +33,7 @@
 
 .front .pattern {
   height: 200px;
-  background: url(/images/topography.svg);
+  background: url(../svg/topography.svg);
 }
 .pattern.up {
   top: 0;

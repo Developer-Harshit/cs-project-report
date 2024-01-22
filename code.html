@@ -5,13 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Report</title>
-    <link rel="stylesheet" href="/css/code.css" />
-    <link rel="stylesheet" href="/css/paper.css" />
+    <link rel="stylesheet" href="./public/css/code.css" />
+    <link rel="stylesheet" href="./public/css/paper.css" />
   </head>
   <body class="A4" >
-
-
-  <section class='sheet padding-10mm'>
+<section class='sheet padding-10mm'>
 <code class='code'><span class='counter'>1</span><span class='code-line'>import sys
 </span><span class='counter'>2</span><span class='code-line'>import pygame as pg
 </span><span class='counter'>3</span><span class='code-line'>from random import random, randint
@@ -62,8 +60,7 @@
 </span><span class='counter'>48</span><span class='code-line'>                continue
 </span><span class='counter'>49</span><span class='code-line'>            other = self.cells[y][i]
 </span><span class='counter'>50</span><span class='code-line'>            if other.value in result:
-</span><span class='counter'>51</span><span class='code-line'>                result.remove(other.value)</span></code></section>
-  <section class='sheet padding-10mm'>
+</span><span class='counter'>51</span><span class='code-line'>                result.remove(other.value)</span></code></section><section class='sheet padding-10mm'>
 <code class='code'><span class='counter'>52</span><span class='code-line'>    def valid_cols(self, cell, result):
 </span><span class='counter'>53</span><span class='code-line'>        x = cell.x
 </span><span class='counter'>54</span><span class='code-line'>        y = cell.y
@@ -119,8 +116,7 @@
 </span><span class='counter'>104</span><span class='code-line'>
 </span><span class='counter'>105</span><span class='code-line'>        curr.value = values[randint(0, len(values) - 1)]
 </span><span class='counter'>106</span><span class='code-line'>        curr.tracked.append(curr.value)
-</span><span class='counter'>107</span><span class='code-line'>        self.closedset.append(curr)</span></code></section>
-  <section class='sheet padding-10mm'>
+</span><span class='counter'>107</span><span class='code-line'>        self.closedset.append(curr)</span></code></section><section class='sheet padding-10mm'>
 <code class='code'><span class='counter'>108</span><span class='code-line'>class Cell:
 </span><span class='counter'>109</span><span class='code-line'>    def __init__(self, x, y, value=0):
 </span><span class='counter'>110</span><span class='code-line'>        self.x = x
@@ -173,8 +169,7 @@
 </span><span class='counter'>157</span><span class='code-line'>                if cell.value == 0:
 </span><span class='counter'>158</span><span class='code-line'>                    cell.render(surf, self.size, self.offset, GRAY)
 </span><span class='counter'>159</span><span class='code-line'>                else:
-</span><span class='counter'>160</span><span class='code-line'>                    cell.render(surf, self.size, self.offset, color)</span></code></section>
-  <section class='sheet padding-10mm'>
+</span><span class='counter'>160</span><span class='code-line'>                    cell.render(surf, self.size, self.offset, color)</span></code></section><section class='sheet padding-10mm'>
 <code class='code'><span class='counter'>161</span><span class='code-line'>class Main:
 </span><span class='counter'>162</span><span class='code-line'>    def __init__(self):
 </span><span class='counter'>163</span><span class='code-line'>        pg.init()
