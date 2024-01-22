@@ -32,12 +32,30 @@
   font-display: swap;
   src: url("../fonts/nova-round.ttf");
 }
-/* fira code  */
+
+/* source code pro  */
 @font-face {
-  font-family: "Fira Code";
+  font-family: "Source Code";
   font-style: normal;
   font-weight: 400;
   font-stretch: 100%;
   font-display: swap;
-  src: url("../fonts/fira-code.ttf");
+  src: url("../fonts/source-code-regular.ttf");
+}
+@font-face {
+  font-family: "Source Code";
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("../fonts/source-code.ttf");
+}
+/* nova round  */
+@font-face {
+  font-family: "Source Code";
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("../fonts/source-code-bold.ttf");
 }

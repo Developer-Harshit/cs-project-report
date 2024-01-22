@@ -1,8 +1,7 @@
 :root {
-  --nova: "Nova Round", system-ui;
-  --fira: "Fira Code", monospace;
-
-  --sans: "Open Sans", sans-serif;
+  --nova: "Nova Round", serif;
+  --code: "Source Code", serif;
+  --sans: "Open Sans", serif;
 }
 
 * {
@@ -86,9 +85,9 @@ img {
 .snippet {
   display: block;
   white-space: pre;
-  font-family: var(--fira);
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-family: var(--code);
+  font-size: 1rem;
+  font-weight: 600;
   color: black;
   border: 1px solid;
   margin: 1rem;
