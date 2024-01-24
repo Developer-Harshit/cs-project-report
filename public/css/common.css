@@ -62,6 +62,15 @@ img {
   margin: 1rem;
   display: block;
 }
+strong {
+  font-weight: 600;
+  display: inline-block;
+}
+.ref span,
+.ref strong {
+  font-size: 0.9rem;
+}
+
 .full {
   width: 80%;
 }

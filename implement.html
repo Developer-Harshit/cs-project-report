@@ -10,7 +10,7 @@
   </head>
 
   <body class="A4">
-    <!-- visualizing sudoku  -->
+<!-- visualizing sudoku  -->
     <section class="padding-10mm sheet">
       <div class="pattern"></div>
       <h1>Implementation</h1>
@@ -50,6 +50,96 @@
         <p style="text-align: center;margin: 0;font-size: 0.8rem;">3x3 grid is show for simplicity</p>
       </div>
     </section>
+<!-- finding valid values  -->
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <div class="sub-section">
+        <h2>Finding Valid Values</h2>
+        <div class="sub-section">
+          <h3>Rows</h3>
+          <p>
+          It loops through the adjacent rows of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_rows(self, cell, result):
+    x = cell.x
+    y = cell.y
+    for i in range(9):
+        if x == i:
+          continue
+        other = self.cells[y][i]
+        if other.value in result:
+            result.remove(other.value)
+</code>
+          </pre>
+        </div>
+        <div class="sub-section">
+          <h3>columns</h3>
+          <p>
+            It loops through the adjacent column of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_cols(self, cell, result):
+    x = cell.x
+    y = cell.y
+    for j in range(9):
+        if y == j:
+          continue
+        other = self.cells[j][x]
+        if other.value in result:
+          result.remove(other.value)
+
+            </code>
+          </pre>
+        </div>
+   
+
+    </section>
+    <section class="padding-10mm sheet">
+      <div class="pattern"></div>
+      <div class="sub-section">
+          <h3>Sub Grid</h3>
+          <p>
+            It loops through the sub grid of current cell and removes duplicate value from result
+          </p>
+          <pre>
+            <code class="snippet">
+def valid_subgrid(self, cell, result):
+    x = cell.x
+    y = cell.y
+    startRow = x - x % 3
+    startCol = y - y % 3
+
+    for j in range(startCol, startCol + 3):
+      for i in range(startRow, startRow + 3):
+          if x == i and y == j:
+              continue
+          other = self.cells[j][i]
+          if other.value in result:
+              result.remove(other.value)
+          
+            </code>
+          </pre>
+        </div>
+        <div class="sub-section">
+          <h3>Tracked</h3>
+          <p>
+            It removes duplicate values from result that are present in tracked property of current cell
+          </p>
+          <pre>
+            <code class="snippet">
+result = []
+for i in range(1, 10):
+    if i not in curr.tracked:
+        result.append(i)
+            </code>
+          </pre>
+        </div>
+      
+    </section>
+<!-- Algorithm Implementation  -->
     <section class="padding-10mm sheet">
       <div class="pattern"></div>
       <h2>Algorithm Implementation</h2>
@@ -93,7 +183,7 @@
           Backtrack function is called when there are no valid_values left for the current cell.It undo previous choices to explore other possibilities 
         </p>
         
-       <pre>
+        <pre>
         <code class="snippet">
 def backtrack(self, curr):
     if not self.closedset:
@@ -104,96 +194,8 @@ def backtrack(self, curr):
     prev.value = 0
 
         </code>
-       </pre>
+        </pre>
       </div>
-    </section>
-    <section class="padding-10mm sheet">
-      <div class="pattern"></div>
-      <div class="sub-section">
-        <h3>Finding Valid Values</h3>
-        <div class="sub-section">
-          <h4>Rows</h4>
-          <p>
-          It loops through the adjacent rows of current cell and removes duplicate value from result
-          </p>
-          <pre>
-            <code class="snippet">
-def valid_rows(self, cell, result):
-    x = cell.x
-    y = cell.y
-    for i in range(9):
-        if x == i:
-          continue
-        other = self.cells[y][i]
-        if other.value in result:
-            result.remove(other.value)
-</code>
-          </pre>
-        </div>
-        <div class="sub-section">
-          <h4>columns</h4>
-          <p>
-            It loops through the adjacent column of current cell and removes duplicate value from result
-          </p>
-          <pre>
-            <code class="snippet">
-def valid_cols(self, cell, result):
-    x = cell.x
-    y = cell.y
-    for j in range(9):
-        if y == j:
-          continue
-        other = self.cells[j][x]
-        if other.value in result:
-          result.remove(other.value)
-
-            </code>
-          </pre>
-        </div>
-   
-
-    </section>
-    <section class="padding-10mm sheet">
-      <div class="pattern"></div>
-      <div class="sub-section">
-          <h4>Sub Grid</h4>
-          <p>
-            It loops through the sub grid of current cell and removes duplicate value from result
-          </p>
-          <pre>
-            <code class="snippet">
-def valid_subgrid(self, cell, result):
-    x = cell.x
-    y = cell.y
-    startRow = x - x % 3
-    startCol = y - y % 3
-
-    for j in range(startCol, startCol + 3):
-      for i in range(startRow, startRow + 3):
-          if x == i and y == j:
-              continue
-          other = self.cells[j][i]
-          if other.value in result:
-              result.remove(other.value)
-          
-            </code>
-          </pre>
-        </div>
-        <div class="sub-section">
-          <h4>Tracked</h4>
-          <p>
-            It removes duplicate values from result that are present in tracked property of current cell
-          </p>
-          <pre>
-            <code class="snippet">
-result = []
-for i in range(1, 10):
-    if i not in curr.tracked:
-        result.append(i)
-            </code>
-          </pre>
-        </div>
-      
     </section>
   </body>
 </html>

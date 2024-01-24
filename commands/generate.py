@@ -21,11 +21,12 @@ htmlcode = """
   </head>
   <body class="A4" >
 """
-
-
+titleHtml = """<h1 style="text-align: center;font-weight: 600;font-family: 'Nova Round';font-size: 32px;">Source Code</h1>"""
 linecount = 1
+
 for lines in pages:
-    htmlcode += """<section class='sheet padding-10mm'>
+    htmlcode += f"""<section class='sheet padding-10mm'> 
+{titleHtml}
 <code class='code'>"""
     for line in lines:
         htmlcode += (
@@ -37,6 +38,7 @@ for lines in pages:
             + "</span>"
         )
         linecount += 1
+        titleHtml = ""
     htmlcode += "</code></section>"
 htmlcode += "</body></html>"
 f = open(parentDir + "code.html", "w")
